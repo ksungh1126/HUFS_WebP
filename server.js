@@ -6,6 +6,7 @@ const app = express();
 app.use(cors()); // ← CORS 허용
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -14,7 +15,7 @@ app.get("/", (req, res) => { res.render("index"); });
 
 app.get("/search", (req, res) => {
   const query = req.query.q || "";
-  res.render("get_result", { q });
+  res.render("get_result", { query });
 });
 
 app.post("/submit", (req, res) => {
